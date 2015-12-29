@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-ago-2015 19:16:01 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.chrisom.sisinv.entity.Producto" table="producto" catalog="dbsisinv">
+        <id name="id" type="string">
+            <column name="producto_id" length="30" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="80" not-null="true" />
+        </property>
+        <property name="precioCompra" type="double">
+            <column name="precio_compra" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="porcentaje" type="int">
+            <column name="porcentaje" not-null="true" />
+        </property>
+        <property name="iva" type="java.lang.Boolean">
+            <column name="iva" />
+        </property>
+        <set name="notaRemisionDetalles" table="nota_remision_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producto_id" length="7" not-null="true" />
+            </key>
+            <one-to-many class="com.chrisom.sisinv.entity.NotaRemisionDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

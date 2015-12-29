@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-oct-2015 22:28:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.chrisom.sisinv.entity.NotaRemision" table="nota_remision" catalog="dbsisinv">
+        <id name="id" type="int">
+            <column name="notaremision_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="vendedor" class="com.chrisom.sisinv.entity.Vendedor" fetch="select">
+            <column name="vendedor_id" length="7" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="total" type="double">
+            <column name="total" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="45" />
+        </property>
+        <set name="notaRemisionDetalles" table="nota_remision_detalle" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="notaremision_id" not-null="true" />
+            </key>
+            <one-to-many class="com.chrisom.sisinv.entity.NotaRemisionDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

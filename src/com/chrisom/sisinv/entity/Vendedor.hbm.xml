@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-oct-2015 22:28:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.chrisom.sisinv.entity.Vendedor" table="vendedor" catalog="dbsisinv">
+        <id name="id" type="string">
+            <column name="vendedor_id" length="7" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="99" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="99" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="15" not-null="true" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="20" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <set name="notaRemisions" table="nota_remision" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vendedor_id" length="7" not-null="true" />
+            </key>
+            <one-to-many class="com.chrisom.sisinv.entity.NotaRemision" />
+        </set>
+    </class>
+</hibernate-mapping>
